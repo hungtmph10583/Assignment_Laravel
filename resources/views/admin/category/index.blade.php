@@ -54,6 +54,7 @@
                                 <th>Tên danh mục</th>
                                 <th>Số lượng sản phẩm</th>
                                 <th>Trạng thái</th>
+                                <th>Show menu</th>
                                 <th>Thumbnail</th>
                                 <th><a href="{{route('category.add')}}" class="btn btn-primary">Tạo mới</a></th>
                             </thead>
@@ -64,6 +65,7 @@
                                     <td>{{$c->name}}</td>
                                     <td>{{count($c->products)}}</td>
                                     <td><i class="{{ $c->status == 1 ? 'fas fa-eye text-success' : 'fas fa-eye-slash text-danger'  }}"></i></td>
+                                    <td><i class="{{ $c->show_menu == 1 ? 'fas fa-eye text-success' : 'fas fa-eye-slash text-danger'  }}"></i></td>
                                     <td></td>
                                     <td>
                                         <a href="{{route('category.edit', ['id' => $c->id])}}" class="btn btn-success"><i class="far fa-edit"></i></a>

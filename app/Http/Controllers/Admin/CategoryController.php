@@ -10,7 +10,7 @@ use App\Models\Product;
 class CategoryController extends Controller
 {
     public function index(Request $request){
-        $pagesize = 6;
+        $pagesize = 5;
         $searchData = $request->except('page');
         
         if(count($request->all()) == 0){

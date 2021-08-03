@@ -36,28 +36,64 @@
         <!-- Add icons to the links using the .nav-icon class
             with font-awesome or any other icon font library -->
             <li class="nav-item">
-                <a href="{{route('category.index')}}" class="nav-link">
+                <a href="#" class="nav-link">
                     <i class="fab fa-buffer"></i>
-                    <p>
-                        Danh mục
-                    </p>
+                    <p>Danh mục<i class="right fas fa-angle-left"></i></p>
                 </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{route('category.index')}}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Danh sách</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('category.add')}}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Thêm danh mục</p>
+                        </a>
+                    </li>
+                </ul>
             </li>
             <li class="nav-item">
-                <a href="{{route('product.index')}}" class="nav-link">
+                <a href="#" class="nav-link">
                     <i class="fas fa-bug"></i>
-                    <p>
-                        Sản phẩm
-                    </p>
+                    <p>Sản phẩm<i class="right fas fa-angle-left"></i></p>
                 </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{route('product.index')}}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Danh sách</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('product.add')}}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Thêm sản phẩm</p>
+                        </a>
+                    </li>
+                </ul>
             </li>
             <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="#" class="nav-link">
                     <i class="fas fa-user-friends"></i>
-                    <p>
-                        Tài khoản
-                    </p>
+                    <p>Tài khoản<i class="right fas fa-angle-left"></i></p>
                 </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="pages/charts/chartjs.html" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Danh sách</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="pages/charts/flot.html" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Thêm tài khoản</p>
+                        </a>
+                    </li>
+                </ul>
             </li>
         </ul>
     </nav>

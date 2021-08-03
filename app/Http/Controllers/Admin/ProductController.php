@@ -13,7 +13,7 @@ use App\Models\ProductGallery;
 class ProductController extends Controller
 {
     public function index(Request $request){
-        $pagesize = 20;
+        $pagesize = 5;
         $searchData = $request->except('page');
         
         if(count($request->all()) == 0){
@@ -43,7 +43,7 @@ class ProductController extends Controller
         
         $cates = Category::all();
         // trả về cho người dùng 1 giao diện + dữ liệu products vừa lấy đc 
-        return view('admin.products.index', [
+        return view('admin.product.index', [
             'data_product' => $products, 
             'cates' => $cates,
             'searchData' => $searchData
@@ -52,9 +52,9 @@ class ProductController extends Controller
 
     public function remove($id){
         $model = Product::find($id);
-        // if (!Gate::allows('remove-product', $model)) {
-        //     abort(403);
-        // }
+        if (!Gate::allows('remove-product', $model)) {
+            abort(403);
+        }
         $model->delete();
         //Product::destroy($id);
         return redirect()->back();;
@@ -62,7 +62,7 @@ class ProductController extends Controller
 
     public function addForm(){
         $cates = Category::all();
-        return view('admin.products.add-form', compact('cates'));
+        return view('admin.product.add-form', compact('cates'));
     }
 
 
@@ -98,7 +98,7 @@ class ProductController extends Controller
         $cates = Category::all();
 
         $model->load('galleries');
-        return view('admin.products.edit-form', compact('model', 'cates'));
+        return view('admin.product.edit-form', compact('model', 'cates'));
     }
 
     public function saveEdit($id, ProductFormRequest $request){
