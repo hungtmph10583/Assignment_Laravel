@@ -14,7 +14,12 @@
             <img src="{{ asset('admin-theme/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
+        @if(Auth::check())
+            <a href="#" class="d-block">{{Auth::user()->name}}</a>
+        @else
             <a href="#" class="d-block">Alexander Pierce</a>
+        @endif
+            
         </div>
     </div>
 

@@ -7,9 +7,16 @@
         <li class="nav-item d-none d-sm-inline-block">
             <a href="index3.html" class="nav-link">Home</a>
         </li>
+        @if(Auth::check())
+            <a href="{{route('logout')}}" class="nav-link">Logout</a>
+        @else
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="" class="nav-link">Logout</a>
+            <a href="{{route('login')}}" class="nav-link">Đăng nhập </a>
         </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="#" class="nav-link">Đăng ký</a>
+        </li>
+        @endif
     </ul>
 
     <!-- Right navbar links -->
