@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 
 use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
 
@@ -37,6 +38,15 @@ Route::prefix('danh-muc')->group(function () {
     Route::post('tao-moi', [CategoryController::class, 'saveAdd']);
     Route::get('cap-nhat/{id}', [CategoryController::class, 'editForm'])->name('category.edit');
     Route::post('cap-nhat/{id}', [CategoryController::class, 'saveEdit']);
+});
+
+Route::prefix('tai-khoan')->group(function () {
+    Route::get('/', [UserController::class, 'index'])->name('user.index');
+    Route::get('xoa/{id}', [UserController::class, 'remove'])->name('user.remove');
+    Route::get('tao-moi', [UserController::class, 'addForm'])->name('user.add');
+    Route::post('tao-moi', [UserController::class, 'saveAdd']);
+    Route::get('cap-nhat/{id}', [UserController::class, 'editForm'])->name('user.edit');
+    Route::post('cap-nhat/{id}', [UserController::class, 'saveEdit']);
 });
 
 ?>
