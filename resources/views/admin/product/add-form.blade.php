@@ -41,6 +41,14 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
+                                    <label for="">Hãng xe</label>
+                                    <select name="comp_id" class="form-control">
+                                        @foreach($comp as $cp)
+                                        <option value="{{$cp->id}}" @if($c->id == old('comp_id')) selected @endif>{{$cp->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group">
                                     <label for="">Giá</label>
                                     <input type="text" name="price" class="form-control" value="{{old('price')}}">
                                     @error('price')

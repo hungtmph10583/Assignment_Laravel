@@ -11,7 +11,11 @@
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-            <img src="{{ asset('admin-theme/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
+            @if(Auth::check())
+                <img src="{{asset( 'storage/' . Auth::user()->avatar)}}" class="img-circle elevation-2" alt="User Image" width="70" />
+            @else
+                <img src="{{ asset('admin-theme/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
+            @endif
         </div>
         <div class="info">
         @if(Auth::check())
@@ -56,6 +60,26 @@
                         <a href="{{route('category.add')}}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Thêm danh mục</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
+                    <i class="fas fa-car"></i>
+                    <p>Hãng xe<i class="right fas fa-angle-left"></i></p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{route('company.index')}}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Danh sách</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('company.add')}}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Thêm hãng xe</p>
                         </a>
                     </li>
                 </ul>

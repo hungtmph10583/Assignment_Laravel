@@ -33,7 +33,8 @@ Route::any('logout', function(){
 })->name('logout');
 
 Route::get('/', function () {
-    return view('welcome');
+    // return view('layouts.client.main');
+    return view('client.welcome');
 })->name('home.client');
 
 use Spatie\Permission\Models\Role;

@@ -17,6 +17,7 @@ class CreateTableProducts extends Migration
             $table->id();
             $table->string('name');
             $table->integer('cate_id');
+            $table->integer('comp_id');
             $table->string('image')->nullable();
             $table->integer('price')->default(0);
             $table->integer('status')->default(1);

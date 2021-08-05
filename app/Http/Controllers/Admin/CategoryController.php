@@ -29,7 +29,6 @@ class CategoryController extends Controller
         }
         //$categories->load('product');
         
-;
         $categories->load('products');
         // trả về cho người dùng 1 giao diện + dữ liệu categories vừa lấy đc 
         return view('admin.category.index', [

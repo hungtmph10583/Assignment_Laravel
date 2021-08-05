@@ -8,7 +8,7 @@
             <div class="card card-secondary my-0">
                 <div class="card-header">
                     <ol class="breadcrumb float-sm-left ">
-                        <li class="breadcrumb-item card-title">Danh sách tài khoản</li>
+                        <li class="breadcrumb-item card-title">Danh sách hãng xe</li>
                     </ol>
                 </div>
             </div><!-- /.row -->
@@ -25,8 +25,8 @@
                         <div class="row">
                             <div class="col">
                                 <div class="form-group">
-                                    <label for="">Tên tài khoản</label>
-                                    <input class="form-control" type="text" name="keyword" @isset($searchData['keyword']) value="{{$searchData['keyword']}}" @endisset>
+                                    <label for="">Tên hãng xe</label>
+                                    <input class="form-control" placeholder="Search" type="text" name="keyword" @isset($searchData['keyword']) value="{{$searchData['keyword']}}" @endisset>
                                 </div>
                             </div>
                             <div class="col">
@@ -51,25 +51,21 @@
                         <table class="table table-striped">
                             <thead>
                                 <th>STT</th>
-                                <th>Name</th>
-                                <th>Avatar</th>
-                                <th>Email</th>
-                                <th>Phone</th>
-                                <th>Active</th>
-                                <th><a href="{{route('user.add')}}" class="btn btn-primary">Tạo mới</a></th>
+                                <th>Tên hãng xe</th>
+                                <th>Logo</th>
+                                <th>Số lượng sản phẩm</th>
+                                <th><a href="{{route('company.add')}}" class="btn btn-primary">Tạo mới</a></th>
                             </thead>
                             <tbody>
-                                @foreach($users as $u)
+                                @foreach($comp as $c)
                                 <tr>
-                                    <td>{{(($users->currentPage()-1)*20) + $loop->iteration}}</td>
-                                    <td>{{$u->name}}</td>
-                                    <td><img src="{{asset( 'storage/' . $u->avatar)}}" width="70" /></td>
-                                    <td>{{$u->email}}</td>
-                                    <td>{{$u->phone}}</td>
-                                    <td><i class="{{ $u->active == 1 ? 'fas fa-eye text-success' : 'fas fa-eye-slash text-danger'  }}"></i></td>
+                                    <td>{{(($comp->currentPage()-1)*20) + $loop->iteration}}</td>
+                                    <td>{{$c->name}}</td>
+                                    <td><img src="{{asset( 'storage/' . $c->logo)}}" width="70" /></td>
+                                    <td>{{count($c->products)}}</td>
                                     <td>
-                                        <a href="{{route('user.edit', ['id' => $u->id])}}" class="btn btn-success"><i class="far fa-edit"></i></a>
-                                        <a href="{{route('user.remove', ['id' => $u->id])}}" class="btn btn-danger" onclick="alert('Bạn có chắc muốn xóa tài khoản này?')">
+                                        <a href="{{route('company.edit', ['id' => $c->id])}}" class="btn btn-success"><i class="far fa-edit"></i></a>
+                                        <a href="{{route('company.remove', ['id' => $c->id])}}" class="btn btn-danger" onclick="alert('Bạn có chắc muốn xóa hãng xe này?')">
                                             <i class="far fa-trash-alt"></i>
                                         </a>
                                     </td>
@@ -78,7 +74,7 @@
                             </tbody>
                         </table>
                         <div class="d-flex justify-content-end">
-                            {{$users->links()}}
+                            {{$comp->links()}}
                         </div>
                     </div>
                 </div>

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Company;
 use App\Models\ProductGallery;
 
 class ProductController extends Controller
@@ -24,6 +25,9 @@ class ProductController extends Controller
             if($request->has('cate_id') && $request->cate_id != ""){
                 $productQuery = $productQuery->where('cate_id', $request->cate_id);
             }
+            if($request->has('comp_id') && $request->comp_id != ""){
+                $productQuery = $productQuery->where('comp_id', $request->comp_id);
+            }
 
             if($request->has('order_by') && $request->order_by > 0){
                 if($request->order_by == 1){
@@ -39,13 +43,16 @@ class ProductController extends Controller
             $products = $productQuery->paginate($pagesize)->appends($searchData);
         }
         $products->load('category');
+        $products->load('company');
         
         
         $cates = Category::all();
+        $comp = Company::all();
         // trả về cho người dùng 1 giao diện + dữ liệu products vừa lấy đc 
         return view('admin.product.index', [
             'data_product' => $products, 
             'cates' => $cates,
+            'comp' => $comp,
             'searchData' => $searchData
         ]);
     }
@@ -62,9 +69,9 @@ class ProductController extends Controller
 
     public function addForm(){
         $cates = Category::all();
-        return view('admin.product.add-form', compact('cates'));
+        $comp = Company::all();
+        return view('admin.product.add-form', compact('cates', 'comp'));
     }
-
 
     public function saveAdd(ProductFormRequest $request){
         $model = new Product(); 
@@ -96,9 +103,10 @@ class ProductController extends Controller
         }
 
         $cates = Category::all();
+        $comp = Company::all();
 
         $model->load('galleries');
-        return view('admin.product.edit-form', compact('model', 'cates'));
+        return view('admin.product.edit-form', compact('model', 'cates', 'comp'));
     }
 
     public function saveEdit($id, ProductFormRequest $request){

@@ -26,7 +26,7 @@
                             <div class="col">
                                 <div class="form-group">
                                     <label for="">Tên danh mục</label>
-                                    <input class="form-control" type="text" name="keyword" @isset($searchData['keyword']) value="{{$searchData['keyword']}}" @endisset>
+                                    <input class="form-control" placeholder="Search" type="text" name="keyword" @isset($searchData['keyword']) value="{{$searchData['keyword']}}" @endisset>
                                 </div>
                             </div>
                             <div class="col">
@@ -55,18 +55,16 @@
                                 <th>Số lượng sản phẩm</th>
                                 <th>Trạng thái</th>
                                 <th>Show menu</th>
-                                <th>Thumbnail</th>
                                 <th><a href="{{route('category.add')}}" class="btn btn-primary">Tạo mới</a></th>
                             </thead>
                             <tbody>
                                 @foreach($cates as $c)
                                 <tr>
-                                    <td>{{(($cates->currentPage()-1)*20) + $loop->iteration}}</td>
+                                    <td>{{(($cates->currentPage()-1)*5) + $loop->iteration}}</td>
                                     <td>{{$c->name}}</td>
                                     <td>{{count($c->products)}}</td>
                                     <td><i class="{{ $c->status == 1 ? 'fas fa-eye text-success' : 'fas fa-eye-slash text-danger'  }}"></i></td>
                                     <td><i class="{{ $c->show_menu == 1 ? 'fas fa-eye text-success' : 'fas fa-eye-slash text-danger'  }}"></i></td>
-                                    <td></td>
                                     <td>
                                         <a href="{{route('category.edit', ['id' => $c->id])}}" class="btn btn-success"><i class="far fa-edit"></i></a>
                                         <a href="{{route('category.remove', ['id' => $c->id])}}" class="btn btn-danger" onclick="alert('Bạn có chắc muốn xóa danh mục này?')">

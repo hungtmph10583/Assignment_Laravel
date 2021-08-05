@@ -28,29 +28,36 @@
                                 <div class="form-group">
                                     <label for="">Name</label>
                                     <input type="text" name="name" class="form-control" value="{{old('name')}}" placeholder="Tên tài khoản">
-                                    <!-- @error('name')
+                                    @error('name')
                                         <span class="text-danger">{{$message}}</span>
-                                    @enderror -->
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="">Email</label>
                                     <input type="text" name="email" class="form-control" value="{{old('email')}}" placeholder="admin@gmail.com">
-                                    <!-- @error('email')
+                                    @error('email')
                                         <span class="text-danger">{{$message}}</span>
-                                    @enderror -->
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="">Password</label>
                                     <input type="password" name="password" class="form-control" value="{{old('password')}}" placeholder="Mật khẩu">
+                                    @error('password')
+                                        <span class="text-danger">{{$message}}</span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label for="">Confirm Password</label>
                                     <input type="password" name="cfpassword" class="form-control" value="{{old('cfpassword')}}" placeholder="Nhập lại mật khẩu">
+                                    @error('cfpassword')
+                                        <span class="text-danger">{{$message}}</span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-6">
-                                <div class="add-product-preview-img">
-
+                            <div class="form-group">
+                                    <label for="">Số điện thoại</label>
+                                    <input type="text" name="phone" class="form-control" value="{{old('phone')}}" placeholder="Nhập vào số điện thoại">
                                 </div>
                                 <div class="form-group">
                                     <label for="">Ảnh đại diện</label>

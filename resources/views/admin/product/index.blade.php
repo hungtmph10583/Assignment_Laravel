@@ -26,11 +26,13 @@
                 <div class="card-body">
                     <form action="" method="get">
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col">
                                 <div class="form-group">
                                     <label for="">Tên sản phẩm</label>
-                                    <input class="form-control" type="text" name="keyword" @isset($searchData['keyword']) value="{{$searchData['keyword']}}" @endisset>
+                                    <input class="form-control" placeholder="Search" type="text" name="keyword" @isset($searchData['keyword']) value="{{$searchData['keyword']}}" @endisset>
                                 </div>
+                            </div>
+                            <div class="col">
                                 <div class="form-group">
                                     <label for="">Danh mục sản phẩm</label>
                                     <select class="form-control" name="cate_id" >
@@ -41,7 +43,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-6">
+                            <div class="col">
                                 <div class="form-group">
                                     <label for="">Sắp xếp theo</label>
                                     <select class="form-control" name="order_by" >
@@ -52,6 +54,21 @@
                                         <option @if(isset($searchData['order_by']) &&  $searchData['order_by'] == 4) selected @endif value="4">Giá giảm dần</option>
                                     </select>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="">Hãng xe sản phẩm</label>
+                                    <select class="form-control" name="comp_id" >
+                                        <option value="">Tất cả</option>
+                                        @foreach($comp as $cp)
+                                        <option @if(isset($searchData['comp_id']) && $cp->id == $searchData['comp_id']) selected @endif value="{{$cp->id}}">{{$cp->name}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6">
                                 <div class="form-group">
                                     <br>
                                     <button type="submit" class="btn btn-primary mt-2">Tìm kiếm</button>
@@ -66,18 +83,22 @@
                                 <th>Tên SP</th>
                                 <th>Ảnh</th>
                                 <th>Danh mục</th>
+                                <th>Hãng xe</th>
                                 <th>Đơn giá</th>
+                                <th>Số lượng</th>
                                 <th><a href="{{route('product.add')}}" class="btn btn-primary">Tạo mới</a></th>
                             </thead>
                             <tbody>
                                 @foreach($data_product as $p)
                                 <tr>
-                                    <td>{{(($data_product->currentPage()-1)*20) + $loop->iteration}}</td>
+                                    <td>{{(($data_product->currentPage()-1)*5) + $loop->iteration}}</td>
                                     <td>{{$p->name}}</td>
                                     <td><img src="{{asset( 'storage/' . $p->image)}}" width="70" /></td>
                                     <!-- <td><img src="{{asset( 'storage/' . $p->image)}}" width="70" /></td> -->
-                                    <td><a href="{{route('category.detail', ['id' => $p->cate_id])}}">{{$p->category->name}}</a></td>
-                                    <td>{{$p->price}}</td>
+                                    <td>{{$p->category->name}}</td>
+                                    <td>{{$p->company->name}}</td>
+                                    <td><i class="fas fa-dollar-sign"></i> {{number_format($p->price)}}</td>
+                                    <td></i> {{number_format($p->quantity)}}</td>
                                     <td>
                                         <a href="{{route('product.edit', ['id' => $p->id])}}" class="btn btn-success"><i class="far fa-edit"></i></a>
                                         <a href="{{route('product.remove', ['id' => $p->id])}}" class="btn btn-danger" onclick="alert('Bạn có chắc muốn xóa sản phẩm này?')"><i class="far fa-trash-alt"></i></a>

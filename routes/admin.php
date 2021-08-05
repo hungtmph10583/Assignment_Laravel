@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\CompanyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +39,15 @@ Route::prefix('danh-muc')->group(function () {
     Route::post('tao-moi', [CategoryController::class, 'saveAdd']);
     Route::get('cap-nhat/{id}', [CategoryController::class, 'editForm'])->name('category.edit');
     Route::post('cap-nhat/{id}', [CategoryController::class, 'saveEdit']);
+});
+
+Route::prefix('Hang-xe')->group(function () {
+    Route::get('/', [CompanyController::class, 'index'])->name('company.index');
+    Route::get('xoa/{id}', [CompanyController::class, 'remove'])->name('company.remove');
+    Route::get('tao-moi', [CompanyController::class, 'addForm'])->name('company.add');
+    Route::post('tao-moi', [CompanyController::class, 'saveAdd']);
+    Route::get('cap-nhat/{id}', [CompanyController::class, 'editForm'])->name('company.edit');
+    Route::post('cap-nhat/{id}', [CompanyController::class, 'saveEdit']);
 });
 
 Route::prefix('tai-khoan')->group(function () {
