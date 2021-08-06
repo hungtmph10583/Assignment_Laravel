@@ -5,10 +5,15 @@
             <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="index3.html" class="nav-link">Home</a>
+            <a href="{{route('home.index')}}" class="nav-link">Home</a>
         </li>
         @if(Auth::check())
+        <li class="nav-item d-none d-sm-inline-block">
             <a href="{{route('logout')}}" class="nav-link">Logout</a>
+        </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="{{route('user.changeP', ['id' => Auth::user()->id])}}" class="nav-link">Đổi mật khẩu</a>
+        </li>
         @else
         <li class="nav-item d-none d-sm-inline-block">
             <a href="{{route('login')}}" class="nav-link">Đăng nhập </a>

@@ -27,13 +27,19 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="">Tên hãng xe</label>
-                                        <input type="text" name="name" class="form-control" placeholder="Tên hãng xe">
+                                        <input type="text" name="name" class="form-control" placeholder="Tên hãng xe" value="{{old('name')}}">
+                                        @error('name')
+                                            <span class="text-danger">{{$message}}</span>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label for="">Logo hãng xe</label>
                                         <input type="file" name="uploadfile" class="form-control">
+                                        @error('uploadfile')
+                                            <span class="text-danger">{{$message}}</span>
+                                        @enderror
                                     </div>
                                 </div>
                                     <div class="text-left ml-2">

@@ -33,10 +33,16 @@
                                     <div class="form-group">
                                         <label for="">Tên hãng xe</label>
                                         <input type="text" name="name" class="form-control" placeholder="Tên hãng xe" value="{{$model->name}}">
+                                        @error('name')
+                                            <span class="text-danger">{{$message}}</span>
+                                        @enderror
                                     </div>
                                     <div class="form-group">
                                         <label for="">Logo hãng xe</label>
                                         <input type="file" name="uploadfile" class="form-control">
+                                        @error('uploadfile')
+                                            <span class="text-danger">{{$message}}</span>
+                                        @enderror
                                     </div>
                                     <div class="form-group">
                                         <button type="submit" class="btn btn-primary">Lưu</button>

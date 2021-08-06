@@ -101,4 +101,36 @@ class UserController extends Controller
 
         return redirect(route('user.index'));
     }
+
+    public function changePForm(){
+        return view('admin.user.changeP-form');
+    }
+
+    public function saveChangeP($id, Request $request){
+        $model = User::find($id);
+
+        if(!$model){
+            return redirect()->back();
+        }
+        
+        $request->validate(
+            [
+                'password' => 'required|min:6|max:32',
+                'cfpassword' => 'required|same:password'
+            ],
+            [
+                'password.required' => "Hãy nhập mật khẩu",
+                'password.min' => "Mật khẩu phải hơn 6 ký tự",
+                'password.max' => "Mật khẩu phải dưới 32 ký tự",
+                'cfpassword.required' => "Hãy nhập xác nhận mật khẩu",
+                'cfpassword.same' => "Mật khẩu xác nhận không giống mật khẩu"
+            ]
+        );
+
+        $model->fill($request->all());
+        $model->password = Hash::make($request->password);
+        $model->save();
+
+        return redirect(route('logout'));
+    }
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
@@ -37,11 +38,11 @@ class LoginController extends Controller
     }
 
     public function postRegistration(Request $request){
-        $model = new User();
+        $users = User::all();
         $request->validate(
             [
                 'name' => 'required|min:3|max:32',
-                'email' => 'required|email|unique',
+                'email' => 'required|email|unique:users',
                 'password' => 'required|min:6|max:32',
                 'cfpassword' => 'required|same:password|'
             ],
@@ -57,11 +58,11 @@ class LoginController extends Controller
                 'cfpassword.same' => "Mật khẩu xác nhận không giống mật khẩu"
             ]
         );
-
+        $model = new User();
         $model->fill($request->all());
         $model->password = Hash::make($request->password);
         $model->save();
 
-        return redirect(route('auth.login'));
+        return redirect(route('login'));
     }
 }

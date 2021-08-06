@@ -28,6 +28,9 @@
                                 <div class="form-group">
                                     <label for="">Tên danh mục</label>
                                     <input type="text" name="name" class="form-control" value="{{$model->name}}" placeholder="Tên danh mục">
+                                    @error('name')
+                                        <span class="text-danger">{{$message}}</span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col">

@@ -20,7 +20,7 @@ use App\Http\Controllers\Admin\CompanyController;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::get('/', [HomeController::class, 'index']);
+Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
 Route::prefix('san-pham')->group(function () {
     Route::get('/', [ProductController::class, 'index'])->name('product.index');
@@ -57,6 +57,8 @@ Route::prefix('tai-khoan')->group(function () {
     Route::post('tao-moi', [UserController::class, 'saveAdd']);
     Route::get('cap-nhat/{id}', [UserController::class, 'editForm'])->middleware('auth')->name('user.edit');
     Route::post('cap-nhat/{id}', [UserController::class, 'saveEdit']);
+    Route::get('doi-mat-khau/{id}', [UserController::class, 'changePForm'])->middleware('auth')->name('user.changeP');
+    Route::post('doi-mat-khau/{id}', [UserController::class, 'saveChangeP']);
 });
 
 ?>

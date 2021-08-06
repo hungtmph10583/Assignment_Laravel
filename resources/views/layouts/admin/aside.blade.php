@@ -122,6 +122,12 @@
                             <p>Thêm tài khoản</p>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{route('user.changeP', ['id' => Auth::user()->id])}}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Đổi mật khẩu</p>
+                        </a>
+                    </li>
                 </ul>
             </li>
         </ul>

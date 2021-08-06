@@ -18,19 +18,25 @@
         <p style="color: red">{{session('msg')}}</p>
         @endif
         <div class="login-in">
+            @error('email')
+                <div class="alert">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                    {{ $message }}.
+                </div>
+            @enderror
             <div class="username">
                 <i class="bx bx-user"></i>
                 <input type="username" name="email" placeholder="username" value="{{old('email')}}">
-                @error('email')
-                    <p style="color: red">{{ $message }}</p>
-                @enderror
             </div>
+            @error('password')
+                <div class="alert">
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                    {{ $message }}.
+                </div>
+            @enderror
             <div class="password">
                 <i class="bx bx-lock"></i>
                 <input type="password" name="password" placeholder="password">
-                @error('password')
-                    <p style="color: red">{{ $message }}</p>
-                @enderror
             </div>
         </div>
         <button class="buttons" type="submit">login</button>

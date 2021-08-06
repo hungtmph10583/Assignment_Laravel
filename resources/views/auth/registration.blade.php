@@ -7,43 +7,6 @@
     <title>Registration</title>
     <link rel="stylesheet" href="{{ asset('admin-theme/custom/login.css')}}">
     <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-    <style>
-        .alert {
-            padding: 20px;
-            background-color: #ffb3bf;
-            color: white;
-            position: absolute;
-            left: 61%;
-            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
-			border-radius: 15px;
-			transition: 0.5s;
-        }
-
-		.alert::before{
-			content: '';
-			position: absolute;
-			left: -8px;
-			width: 20px;
-			height: 20px;
-			background: #ffb3bf;
-			transform: rotate(45deg);
-		}
-
-        .closebtn {
-            margin-left: 15px;
-            color: white;
-            font-weight: bold;
-            float: right;
-            font-size: 22px;
-            line-height: 20px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .closebtn:hover {
-            color: black;
-        }
-    </style>
 </head>
 <body>
     <form class="login-div" method="POST">
@@ -93,10 +56,10 @@
                 <input type="password" name="cfpassword" placeholder="Confirm password">
             </div>
         </div>
-        <button class="buttons" type="submit">login</button>
+        <button class="buttons" type="submit">Submit</button>
         <div class="link">
             <a href="#">Forgotten password</a> or
-            <a href="{{route('login')}}">Sign up</a>
+            <a href="{{route('login')}}">Sign in</a>
         </div>
     </form>
 </body>

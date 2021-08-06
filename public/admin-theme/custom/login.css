@@ -180,3 +180,39 @@ a {
 img {
     width: 100%
 }
+
+.alert {
+    padding: 20px;
+    background-color: #ffb3bf;
+    color: white;
+    position: absolute;
+    left: 61%;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
+    transition: 0.5s;
+}
+
+.alert::before {
+    content: '';
+    position: absolute;
+    left: -8px;
+    width: 20px;
+    height: 20px;
+    background: #ffb3bf;
+    transform: rotate(45deg);
+}
+
+.closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.closebtn:hover {
+    color: black;
+}

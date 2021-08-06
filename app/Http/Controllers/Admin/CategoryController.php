@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CategoryFormRequest;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\Product;
@@ -46,7 +47,7 @@ class CategoryController extends Controller
         return view('admin.category.add-form');
     }
 
-    public function saveAdd(Request $request){
+    public function saveAdd(CategoryFormRequest $request){
         $model = new Category();
         $model->fill($request->all());
         $model->save();
@@ -61,11 +62,12 @@ class CategoryController extends Controller
         return view('admin.category.edit-form', compact('model'));
     }
 
-    public function saveEdit($id, Request $request){
+    public function saveEdit($id, CategoryFormRequest $request){
         $model = Category::find($id); 
         if(!$model){
             return redirect()->back();
         }
+        
         $model->fill($request->all());
         $model->save();
         return redirect(route('category.index'));
