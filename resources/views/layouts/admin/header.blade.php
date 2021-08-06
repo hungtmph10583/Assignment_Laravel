@@ -19,7 +19,7 @@
             <a href="{{route('login')}}" class="nav-link">Đăng nhập </a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="#" class="nav-link">Đăng ký</a>
+            <a href="{{route('registration')}}" class="nav-link">Đăng ký</a>
         </li>
         @endif
     </ul>
