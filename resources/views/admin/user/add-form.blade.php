@@ -55,13 +55,19 @@
                                 </div>
                             </div>
                             <div class="col-6">
-                            <div class="form-group">
+                                <div class="form-group">
                                     <label for="">Số điện thoại</label>
                                     <input type="text" name="phone" class="form-control" value="{{old('phone')}}" placeholder="Nhập vào số điện thoại">
+                                    @error('phone')
+                                        <span class="text-danger">{{$message}}</span>
+                                    @enderror   
                                 </div>
                                 <div class="form-group">
                                     <label for="">Ảnh đại diện</label>
                                     <input type="file" name="uploadfile" class="form-control">
+                                    @error('uploadfile')
+                                        <span class="text-danger">{{$message}}</span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="text-right">

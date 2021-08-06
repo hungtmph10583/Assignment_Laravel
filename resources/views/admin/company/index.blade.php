@@ -59,7 +59,7 @@
                             <tbody>
                                 @foreach($comp as $c)
                                 <tr>
-                                    <td>{{(($comp->currentPage()-1)*20) + $loop->iteration}}</td>
+                                    <td>{{(($comp->currentPage()-1)*5) + $loop->iteration}}</td>
                                     <td>{{$c->name}}</td>
                                     <td><img src="{{asset( 'storage/' . $c->logo)}}" width="70" /></td>
                                     <td>{{count($c->products)}}</td>

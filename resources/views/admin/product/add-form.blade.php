@@ -48,6 +48,15 @@
                                         @endforeach
                                     </select>
                                 </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="">Ảnh sản phẩm</label>
+                                    <input type="file" name="uploadfile" class="form-control">
+                                    @error('uploadfile')
+                                        <span class="text-danger">{{$message}}</span>
+                                    @enderror
+                                </div>
                                 <div class="form-group">
                                     <label for="">Giá</label>
                                     <input type="text" name="price" class="form-control" value="{{old('price')}}">
@@ -58,19 +67,7 @@
                                 <div class="form-group">
                                     <label for="">Số lượng</label>
                                     <input type="text" name="quantity" class="form-control" value="{{old('quantity')}}">
-                                </div>
-                                @error('quantity')
-                                    <span class="text-danger">{{$message}}</span>
-                                @enderror
-                            </div>
-                            <div class="col-6">
-                                <div class="add-product-preview-img">
-
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Ảnh sản phẩm</label>
-                                    <input type="file" name="uploadfile" class="form-control">
-                                    @error('uploadfile')
+                                    @error('quantity')
                                         <span class="text-danger">{{$message}}</span>
                                     @enderror
                                 </div>

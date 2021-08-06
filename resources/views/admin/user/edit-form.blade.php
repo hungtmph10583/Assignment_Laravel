@@ -25,7 +25,12 @@
                         @csrf
                         <div class="row">
                             <div class="col-6">
-                                <div class="form-group">
+                                <div class="add-product-preview-img">
+                                    <img src="{{asset('storage/' . $model->avatar)}}" class="img-thumbnail">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                            <div class="form-group">
                                     <label for="">Name</label>
                                     <input type="text" name="name" class="form-control" placeholder="Tên tài khoản" value="{{$model->name}}">
                                     @error('name')
@@ -40,36 +45,23 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="">Password</label>
-                                    <input type="password" name="password" class="form-control" placeholder="Mật khẩu">
-                                    @error('password')
-                                        <span class="text-danger">{{$message}}</span>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label for="">Confirm Password</label>
-                                    <input type="password" name="cfpassword" class="form-control" placeholder="Nhập lại mật khẩu">
-                                    @error('cfpassword')
-                                        <span class="text-danger">{{$message}}</span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="add-product-preview-img">
-                                    <img src="{{asset('storage/' . $model->avatar)}}" class="img-thumbnail">
-                                </div>
-                                <div class="form-group">
                                     <label for="">Số điện thoại</label>
                                     <input type="text" name="phone" class="form-control" placeholder="Nhập vào số điện thoại" value="{{$model->phone}}">
+                                    @error('phone')
+                                        <span class="text-danger">{{$message}}</span>
+                                    @enderror  
                                 </div>
                                 <div class="form-group">
                                     <label for="">Ảnh đại diện</label>
                                     <input type="file" name="uploadfile" class="form-control">
+                                    @error('uploadfile')
+                                        <span class="text-danger">{{$message}}</span>
+                                    @enderror
                                 </div>
-                            </div>
-                            <div class="text-right">
-                                <button type="submit" class="btn btn-primary">Lưu</button>
-                                <a href="{{route('user.index')}}" class="btn btn-danger">Hủy</a>
+                                <div class="text-left">
+                                    <button type="submit" class="btn btn-primary">Lưu</button>
+                                    <a href="{{route('user.index')}}" class="btn btn-danger">Hủy</a>
+                                </div>
                             </div>
                         </div>
                     </form>

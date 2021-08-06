@@ -94,9 +94,8 @@
                                     <td>{{(($data_product->currentPage()-1)*5) + $loop->iteration}}</td>
                                     <td>{{$p->name}}</td>
                                     <td><img src="{{asset( 'storage/' . $p->image)}}" width="70" /></td>
-                                    <!-- <td><img src="{{asset( 'storage/' . $p->image)}}" width="70" /></td> -->
                                     <td>{{$p->category->name}}</td>
-                                    <td>{{$p->company->name}}</td>
+                                    <td><img src="{{asset( 'storage/' . $p->company->logo)}}" width="70" /></td>
                                     <td><i class="fas fa-dollar-sign"></i> {{number_format($p->price)}}</td>
                                     <td></i> {{number_format($p->quantity)}}</td>
                                     <td>

@@ -1,29 +1,3 @@
-<!-- @if(session('msg') != null)
-<p style="color: red">{{session('msg')}}</p>
-@endif
-<form action="" method="POST">
-    @csrf
-    <div>
-        <label for="">Email</label>
-        <input type="text" name="email">
-        <br>
-        @error('email')
-            <p style="color: red">{{ $message }}</p>
-        @enderror
-    </div>
-    <div>
-        <label for="">Password</label>
-        <input type="password" name="password">
-        <br>
-        @error('password')
-            <p style="color: red">{{ $message }}</p>
-        @enderror
-    </div>
-    <div>
-        <button type="submit">Đăng nhập</button>
-    </div>
-</form> -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,23 +20,23 @@
         <div class="login-in">
             <div class="username">
                 <i class="bx bx-user"></i>
-                <input type="username" name="email" placeholder="username">
+                <input type="username" name="email" placeholder="username" value="{{old('email')}}">
+                @error('email')
+                    <p style="color: red">{{ $message }}</p>
+                @enderror
             </div>
-            @error('email')
-                <p style="color: red">{{ $message }}</p>
-            @enderror
             <div class="password">
                 <i class="bx bx-lock"></i>
                 <input type="password" name="password" placeholder="password">
+                @error('password')
+                    <p style="color: red">{{ $message }}</p>
+                @enderror
             </div>
-            @error('password')
-                <p style="color: red">{{ $message }}</p>
-            @enderror
         </div>
         <button class="buttons" type="submit">login</button>
         <div class="link">
             <a href="#">Forgotten password</a> or
-            <a href="#">Sign up</a>
+            <a href="{{route('registration')}}">Sign up</a>
         </div>
     </form>
 </body>

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\UserFormRequest;
 
 class UserController extends Controller
 {
@@ -38,27 +39,8 @@ class UserController extends Controller
         return view('admin.user.add-form');
     }
 
-    public function saveAdd(Request $request){
+    public function saveAdd(UserFormRequest $request){
         $model = new User();
-        
-        $request->validate(
-            [
-                'name' => 'required|min:3',
-                'email' => 'required|email',
-                'password' => 'required|min:6|max:32',
-                'cfpassword' => 'required|same:password|'
-            ],
-            [
-                'name.required' => "Hãy nhập vào tên",
-                'email.required' => "Hãy nhập email",
-                'email.email' => "Không đúng định dạng email",
-                'password.required' => "Hãy nhập mật khẩu",
-                'password.min' => "Mật khẩu phải hơn 6 ký tự",
-                'password.max' => "Mật khẩu phải dưới 32 ký tự",
-                'cfpassword.required' => "Hãy nhập xác nhận mật khẩu",
-                'cfpassword.same' => "Mật khẩu xác nhận không giống mật khẩu"
-            ]
-        );
 
         $model->fill($request->all());
         // upload ảnh
@@ -90,28 +72,27 @@ class UserController extends Controller
         if(!$model){
             return redirect()->back();
         }
-
+        
         $request->validate(
             [
-                'name' => 'required|min:3',
+                'name' => 'required|min:3|max:32',
                 'email' => 'required|email',
-                'password' => 'required|min:6|max:32',
-                'cfpassword' => 'required|same:password|'
+                'phone' => 'required|min:10|max:10',
+                'uploadfile' => 'mimes:jpg,bmp,png,jpeg|mimes:jpg,bmp,png,jpeg',
             ],
             [
                 'name.required' => "Hãy nhập vào tên",
                 'email.required' => "Hãy nhập email",
                 'email.email' => "Không đúng định dạng email",
-                'password.required' => "Hãy nhập mật khẩu",
-                'password.min' => "Mật khẩu phải hơn 6 ký tự",
-                'password.max' => "Mật khẩu phải dưới 32 ký tự",
-                'cfpassword.required' => "Hãy nhập xác nhận mật khẩu",
-                'cfpassword.same' => "Mật khẩu xác nhận không giống mật khẩu"
+                'phone.required' => "Hãy nhập số điện thoại",
+                'phone.numeric' => "Số điện thoại không đúng định dạng",
+                'phone.min' => "Số điện thoại phải đủ 10 chữ số",
+                'phone.max' => "Số điện thoại chỉ có 10 chữ số",
+                'uploadfile.mimes' => 'File ảnh đại diện không đúng định dạng (jpg, bmp, png, jpeg)',
             ]
         );
 
         $model->fill($request->all());
-        $model->password = Hash::make($request->password);
         // upload ảnh
         if($request->hasFile('uploadfile')){
             $model->avatar = $request->file('uploadfile')->storeAs('uploads/users', uniqid() . '-' . $request->uploadfile->getClientOriginalName());

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\HomeClientController;
 use App\Http\Controllers\LoginController;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -22,6 +23,8 @@ Route::get('danh-muc/xoa/{id}', [HomeController::class, 'removeCate'])
 
 Route::get('login', [LoginController::class, 'loginForm'])->name('login');
 Route::post('login', [LoginController::class, 'postLogin']);
+Route::get('registration', [LoginController::class, 'registrationForm'])->name('registration');
+Route::post('registration', [LoginController::class, 'postRegistration']);
 // Route::get('fake-login/{id}', function($id){
 //     $user = User::find($id);
 //     Auth::login($user);
@@ -32,10 +35,7 @@ Route::any('logout', function(){
     return redirect(route('login'));
 })->name('logout');
 
-Route::get('/', function () {
-    // return view('layouts.client.main');
-    return view('client.welcome');
-})->name('home.client');
+Route::get('/', [HomeClientController::class, 'index'])->name('home.client');
 
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;

@@ -3,67 +3,28 @@
 <div class="hero">
     <div class="slide-container" id="hero-slide">
         <!-- slide item -->
-        <div class="slide">
-            <div class="slide-txt">
-                <div class="slide-title">
-                    <h3>polygon siskiu</h3>
-                </div>
-                <div class="slide-description">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laboru</p>
-                </div>
-                <div class="slide-btn">
-                    <a href="#" class="hero-btn">
-                        buy now
-                    </a>
-                </div>
-            </div>
-            <div class="slide-img">
-                <img src="{{ asset('client-theme/images/MTBROMO_N7_2022.png')}}" alt="">
-            </div>
-        </div>
-        <!-- end slide item -->
-        <!-- slide item -->
-        <div class="slide">
-            <div class="slide-txt">
-                <div class="slide-title">
-                    <h3>mt bromo n7</h3>
-                </div>
-                <div class="slide-description">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laboru</p>
-                </div>
-                <div class="slide-btn">
-                    <a href="#" class="hero-btn">
-                        buy now
-                    </a>
-                </div>
-            </div>
-            <div class="slide-img">
-                <img src="{{ asset('client-theme/images/6489548.png')}}" alt="">
-            </div>
-        </div>
-        <!-- end slide item -->
-        <!-- slide item -->
-        <div class="slide">
-            <div class="slide-txt">
-                <div class="slide-title">
-                    <h3>cascade mount</h3>
-                </div>
-                <div class="slide-description">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laboru</p>
-                </div>
-                <div class="slide-btn">
-                    <a href="#" class="hero-btn">
-                        buy now
-                    </a>
-                </div>
-            </div>
-            <div class="slide-img">
-                <img src="{{ asset('client-theme/images/b1.png')}}" alt="">
-            </div>
-        </div>
+        @foreach($data_product as $p)
+                @if($p->category->id == 2)
+                    <div class="slide">
+                        <div class="slide-txt">
+                            <div class="slide-title">
+                                <h3>{{$p->name}}</h3>
+                            </div>
+                            <div class="slide-description">
+                                <p>{{$p->detail}}</p>
+                            </div>
+                            <div class="slide-btn">
+                                <a href="#" class="hero-btn">
+                                    buy now
+                                </a>
+                            </div>
+                        </div>
+                        <div class="slide-img">
+                            <img src="{{asset( 'storage/' . $p->image)}}" alt="">
+                        </div>
+                    </div>
+                @endif
+        @endforeach
         <!-- end slide item -->
         <div class="hero-txt">
             you ride
@@ -71,9 +32,11 @@
         <!-- slide control -->
         <ul class="slide-control">
             <li class="slide-prev"><i class="bx bx-chevron-left"></i></li>
-            <li class="slide-control-item active">01</li>
-            <li class="slide-control-item">02</li>
-            <li class="slide-control-item">03</li>
+            @foreach($data_product as $p)
+                @if($p->category->id == 2)
+                    <li class="slide-control-item active">01</li>
+                @endif
+            @endforeach
             <li class="slide-next"><i class="bx bx-chevron-right"></i></li>
         </ul>
         <!-- end slide control -->

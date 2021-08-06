@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,5 +30,38 @@ class LoginController extends Controller
         }
 
         return redirect()->back()->with('msg', "Sai thông tin đăng nhập");
+    }
+
+    public function registrationForm(Request $request){
+        return view('auth.registration');
+    }
+
+    public function postRegistration(Request $request){
+        $model = new User();
+        $request->validate(
+            [
+                'name' => 'required|min:3|max:32',
+                'email' => 'required|email|unique',
+                'password' => 'required|min:6|max:32',
+                'cfpassword' => 'required|same:password|'
+            ],
+            [
+                'name.required' => "Hãy nhập vào tên",
+                'email.required' => "Hãy nhập email",
+                'email.email' => "Không đúng định dạng email",
+                'email.unique' => "Email này đã được sử dụng",
+                'password.required' => "Hãy nhập mật khẩu",
+                'password.min' => "Mật khẩu phải hơn 6 ký tự",
+                'password.max' => "Mật khẩu phải dưới 32 ký tự",
+                'cfpassword.required' => "Hãy nhập xác nhận mật khẩu",
+                'cfpassword.same' => "Mật khẩu xác nhận không giống mật khẩu"
+            ]
+        );
+
+        $model->fill($request->all());
+        $model->password = Hash::make($request->password);
+        $model->save();
+
+        return redirect(route('auth.login'));
     }
 }

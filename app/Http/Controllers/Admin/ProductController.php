@@ -44,26 +44,24 @@ class ProductController extends Controller
         }
         $products->load('category');
         $products->load('company');
-        
+        $products->load('galleries');
         
         $cates = Category::all();
+        $productG = ProductGallery::all();
         $comp = Company::all();
+        
         // trả về cho người dùng 1 giao diện + dữ liệu products vừa lấy đc 
         return view('admin.product.index', [
             'data_product' => $products, 
             'cates' => $cates,
             'comp' => $comp,
+            'productG' => $productG,
             'searchData' => $searchData
         ]);
     }
 
     public function remove($id){
-        $model = Product::find($id);
-        if (!Gate::allows('remove-product', $model)) {
-            abort(403);
-        }
-        $model->delete();
-        //Product::destroy($id);
+        Product::destroy($id);
         return redirect()->back();;
     }
 

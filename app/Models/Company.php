@@ -17,6 +17,6 @@ class Company extends Model
     // Quan hệ category -> product
     public function products()
     {
-        return $this->hasMany(Product::class,'cate_id');
+        return $this->hasMany(Product::class,'comp_id');
     }
 }
