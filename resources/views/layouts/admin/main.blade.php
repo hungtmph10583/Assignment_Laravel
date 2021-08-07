@@ -6,6 +6,7 @@
     <title>@yield('title')</title>
     <!-- Css -->
     @include('layouts.admin.style')
+    @yield('pageStyle')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 @yield('body')

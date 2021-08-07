@@ -65,7 +65,11 @@
                                     <td>{{count($c->products)}}</td>
                                     <td>
                                         <a href="{{route('company.edit', ['id' => $c->id])}}" class="btn btn-success"><i class="far fa-edit"></i></a>
-                                        <a href="{{route('company.remove', ['id' => $c->id])}}" class="btn btn-danger" onclick="alert('Bạn có chắc muốn xóa hãng xe này?')">
+                                        @if(count($c->products) > 0)
+                                        <a href="{{route('company.remove', ['id' => $c->id])}}" class="btn btn-danger" onclick="return confirm('Hãng xe này đang tồn tại sp')">
+                                        @else
+                                        <a href="{{route('company.remove', ['id' => $c->id])}}" class="btn btn-danger" onclick="return confirm('Bạn có chắc muốn xóa hãng xe này')">
+                                        @endif
                                             <i class="far fa-trash-alt"></i>
                                         </a>
                                     </td>

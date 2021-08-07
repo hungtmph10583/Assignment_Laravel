@@ -39,7 +39,9 @@ class CategoryController extends Controller
     }
 
     public function remove($id){
-        Category::destroy($id);
+        $category = Category::find($id);
+        $category->products()->delete();
+        $category->delete();
         return redirect()->back();;
     }
 

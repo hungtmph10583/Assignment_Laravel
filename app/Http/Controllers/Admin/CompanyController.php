@@ -39,7 +39,10 @@ class CompanyController extends Controller
     }
 
     public function remove($id){
-        Company::destroy($id);
+        //Company::destroy($id);
+        $company = Company::find($id);
+        $company->products()->delete();
+        $company->delete();
         return redirect()->back();;
     }
 
