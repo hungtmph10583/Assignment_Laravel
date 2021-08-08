@@ -67,6 +67,7 @@
                                     <td><i class="{{ $c->show_menu == 1 ? 'fas fa-eye text-success' : 'fas fa-eye-slash text-danger'  }}"></i></td>
                                     <td>
                                         <a href="{{route('category.edit', ['id' => $c->id])}}" class="btn btn-success"><i class="far fa-edit"></i></a>
+                                        
                                         @if(count($c->products) > 0)
                                             <a class="btn btn-danger" href="{{route('category.remove', ['id' => $c->id])}}" onclick="return confirm('Danh mục này đang tồn tại sp')">
                                         @else

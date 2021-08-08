@@ -96,12 +96,14 @@
                             <p>Danh sách</p>
                         </a>
                     </li>
+                    @hasanyrole('admin|editor')
                     <li class="nav-item">
                         <a href="{{route('product.add')}}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Thêm sản phẩm</p>
                         </a>
                     </li>
+                    @endhasanyrole
                 </ul>
             </li>
             <li class="nav-item">

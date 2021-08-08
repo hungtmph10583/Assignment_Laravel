@@ -24,11 +24,14 @@ Route::get('/', [HomeController::class, 'index'])->name('home.index');
 
 Route::prefix('san-pham')->group(function () {
     Route::get('/', [ProductController::class, 'index'])->name('product.index');
-    Route::get('xoa/{id}', [ProductController::class, 'remove'])->middleware('auth')->name('product.remove');
-    Route::get('tao-moi', [ProductController::class, 'addForm'])->middleware('auth')->name('product.add');
-    Route::post('tao-moi', [ProductController::class, 'saveAdd']);
-    Route::get('cap-nhat/{id}', [ProductController::class, 'editForm'])->middleware('auth')->name('product.edit');
-    Route::post('cap-nhat/{id}', [ProductController::class, 'saveEdit']);
+    Route::get('xoa/{id}', [ProductController::class, 'remove'])->middleware('permission:remove product')->name('product.remove');
+
+    Route::middleware('permission:add product')->group(function(){
+        Route::get('tao-moi', [ProductController::class, 'addForm'])->name('product.add');
+        Route::post('tao-moi', [ProductController::class, 'saveAdd']);
+        Route::get('cap-nhat/{id}', [ProductController::class, 'editForm'])->name('product.edit');
+        Route::post('cap-nhat/{id}', [ProductController::class, 'saveEdit']);
+    });
 });
 
 Route::prefix('danh-muc')->group(function () {
