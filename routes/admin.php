@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\HomeController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\CompanyController;
@@ -21,18 +22,6 @@ use App\Http\Controllers\Admin\CompanyController;
 |
 */
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
-
-Route::prefix('san-pham')->group(function () {
-    Route::get('/', [ProductController::class, 'index'])->name('product.index');
-    Route::get('xoa/{id}', [ProductController::class, 'remove'])->middleware('permission:remove product')->name('product.remove');
-
-    Route::middleware('permission:add product')->group(function(){
-        Route::get('tao-moi', [ProductController::class, 'addForm'])->name('product.add');
-        Route::post('tao-moi', [ProductController::class, 'saveAdd']);
-        Route::get('cap-nhat/{id}', [ProductController::class, 'editForm'])->name('product.edit');
-        Route::post('cap-nhat/{id}', [ProductController::class, 'saveEdit']);
-    });
-});
 
 Route::prefix('danh-muc')->group(function () {
     Route::get('/', [CategoryController::class, 'index'])->name('category.index');
@@ -51,6 +40,27 @@ Route::prefix('Hang-xe')->group(function () {
     Route::post('tao-moi', [CompanyController::class, 'saveAdd']);
     Route::get('cap-nhat/{id}', [CompanyController::class, 'editForm'])->middleware('auth')->name('company.edit');
     Route::post('cap-nhat/{id}', [CompanyController::class, 'saveEdit']);
+});
+
+Route::prefix('Tag')->group(function () {
+    Route::get('/', [TagController::class, 'index'])->name('tag.index');
+    Route::get('xoa/{id}', [TagController::class, 'remove'])->middleware('auth')->name('tag.remove');
+    Route::get('tao-moi', [TagController::class, 'addForm'])->middleware('auth')->name('tag.add');
+    Route::post('tao-moi', [TagController::class, 'saveAdd']);
+    Route::get('cap-nhat/{id}', [TagController::class, 'editForm'])->middleware('auth')->name('tag.edit');
+    Route::post('cap-nhat/{id}', [TagController::class, 'saveEdit']);
+});
+
+Route::prefix('san-pham')->group(function () {
+    Route::get('/', [ProductController::class, 'index'])->name('product.index');
+    Route::get('xoa/{id}', [ProductController::class, 'remove'])->middleware('permission:remove product')->name('product.remove');
+
+    Route::middleware('permission:add product')->group(function(){
+        Route::get('tao-moi', [ProductController::class, 'addForm'])->name('product.add');
+        Route::post('tao-moi', [ProductController::class, 'saveAdd']);
+        Route::get('cap-nhat/{id}', [ProductController::class, 'editForm'])->name('product.edit');
+        Route::post('cap-nhat/{id}', [ProductController::class, 'saveEdit']);
+    });
 });
 
 Route::prefix('tai-khoan')->group(function () {

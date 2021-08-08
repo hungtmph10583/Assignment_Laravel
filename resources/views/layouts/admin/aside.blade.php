@@ -86,6 +86,26 @@
             </li>
             <li class="nav-item">
                 <a href="#" class="nav-link">
+                    <i class="fas fa-tags"></i>
+                    <p>Thẻ tag<i class="right fas fa-angle-left"></i></p>
+                </a>
+                <ul class="nav nav-treeview">
+                    <li class="nav-item">
+                        <a href="{{route('tag.index')}}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Danh sách</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{route('tag.add')}}" class="nav-link">
+                            <i class="far fa-circle nav-icon"></i>
+                            <p>Thêm thẻ tag</p>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link">
                     <i class="fas fa-bug"></i>
                     <p>Sản phẩm<i class="right fas fa-angle-left"></i></p>
                 </a>
