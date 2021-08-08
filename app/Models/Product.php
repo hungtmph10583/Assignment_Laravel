@@ -25,4 +25,8 @@ class Product extends Model
     public function galleries(){
         return $this->hasMany(ProductGallery::class, 'product_id');
     }
+
+    public function tags(){
+        return $this->belongsToMany(Tag::class, 'product_tag', 'product_id', 'tag_id');
+    }
 }

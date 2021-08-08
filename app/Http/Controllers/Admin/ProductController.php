@@ -42,9 +42,7 @@ class ProductController extends Controller
             }
             $products = $productQuery->paginate($pagesize)->appends($searchData);
         }
-        $products->load('category');
-        $products->load('company');
-        $products->load('galleries');
+        $products->load('category', 'tags', 'company', 'galleries');
         
         $cates = Category::all();
         $productG = ProductGallery::all();

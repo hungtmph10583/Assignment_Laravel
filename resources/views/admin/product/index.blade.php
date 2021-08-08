@@ -86,6 +86,7 @@
                                 <th>Hãng xe</th>
                                 <th>Đơn giá</th>
                                 <th>Số lượng</th>
+                                <th>Tag</th>
                                 <th><a href="{{route('product.add')}}" class="btn btn-primary">Tạo mới</a></th>
                             </thead>
                             <tbody>
@@ -97,7 +98,14 @@
                                     <td>{{$p->category->name}}</td>
                                     <td><img src="{{asset( 'storage/' . $p->company->logo)}}" width="70" /></td>
                                     <td><i class="fas fa-dollar-sign"></i> {{number_format($p->price)}}</td>
-                                    <td></i> {{number_format($p->quantity)}}</td>
+                                    <td>{{number_format($p->quantity)}}</td>
+                                    <td>
+                                        @isset($p->tags)
+                                            @foreach($p->tags as $t)
+                                                <span>{{$t->name}}</span>
+                                            @endforeach
+                                        @endisset
+                                    </td>
                                     <td>
                                         <a href="{{route('product.edit', ['id' => $p->id])}}" class="btn btn-success"><i class="far fa-edit"></i></a>
                                         <a href="{{route('product.remove', ['id' => $p->id])}}" class="btn btn-danger" onclick="alert('Bạn có chắc muốn xóa sản phẩm này?')"><i class="far fa-trash-alt"></i></a>
