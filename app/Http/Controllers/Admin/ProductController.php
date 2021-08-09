@@ -7,6 +7,8 @@ use App\Http\Requests\ProductFormRequest;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Tag;
+use App\Models\ProductTag;
 use App\Models\Category;
 use App\Models\Company;
 use App\Models\ProductGallery;
@@ -42,9 +44,11 @@ class ProductController extends Controller
             }
             $products = $productQuery->paginate($pagesize)->appends($searchData);
         }
-        $products->load('category', 'tags', 'company', 'galleries');
+        $products->load('category', 'tags', 'company', 'galleries', 'product_tag');
         
         $cates = Category::all();
+        $tag = Tag::all();
+        $productT = ProductTag::all();
         $productG = ProductGallery::all();
         $comp = Company::all();
         
@@ -59,19 +63,22 @@ class ProductController extends Controller
     }
 
     public function remove($id){
-        Product::destroy($id);
-        return redirect()->back();;
+        $product = Product::find($id);
+        $product->product_tag()->delete();
+        $product->delete();
+        return redirect()->back();
     }
 
     public function addForm(){
         $cates = Category::all();
         $comp = Company::all();
-        return view('admin.product.add-form', compact('cates', 'comp'));
+        $tags = Tag::all();
+        return view('admin.product.add-form', compact('cates', 'comp', 'tags'));
     }
 
     public function saveAdd(ProductFormRequest $request){
         $model = new Product(); 
-
+        
         $model->fill($request->all());
         // upload ảnh
         if($request->hasFile('uploadfile')){
@@ -79,6 +86,15 @@ class ProductController extends Controller
         }
 
         $model->save();
+        if($request->has('tag_id')){
+            foreach($request->tag_id as $tg => $item){
+                $productTagObj = new ProductTag();
+                $productTagObj->product_id = $model->id;
+                $productTagObj->tag_id = $item;
+                $productTagObj->save();
+            }
+        }
+
         if($request->has('galleries')){
             foreach($request->galleries as $i => $item){
                 $galleryObj = new ProductGallery();
@@ -100,14 +116,16 @@ class ProductController extends Controller
 
         $cates = Category::all();
         $comp = Company::all();
+        $tags = Tag::all();
+        $product_tag = ProductTag::all();
 
-        $model->load('galleries');
-        return view('admin.product.edit-form', compact('model', 'cates', 'comp'));
+        $model->load('galleries', 'product_tag', 'tags');
+        return view('admin.product.edit-form', compact('model', 'cates', 'comp', 'tags', 'product_tag'));
     }
 
     public function saveEdit($id, ProductFormRequest $request){
-        
         $model = Product::find($id); 
+        
         if(!$model){
             return redirect()->back();
         }
@@ -117,7 +135,23 @@ class ProductController extends Controller
             $model->image = $request->file('uploadfile')->storeAs('uploads/products', uniqid() . '-' . $request->uploadfile->getClientOriginalName());
         }
         $model->save();
-
+        if($request->has('tag_id')){
+            $removePrt = ProductTag::where("product_id", $id)->get();
+            foreach($removePrt as $rmv){
+                $rmv->delete();
+            }
+            foreach($request->tag_id as $tg => $item){
+                $productTagObj = new ProductTag();
+                $productTagObj->product_id = $model->id;
+                $productTagObj->tag_id = $item;
+                $productTagObj->save();
+            }
+        }else{
+            $removePrt = ProductTag::where("product_id", $id)->get();
+            foreach($removePrt as $rmv){
+                $rmv->delete();
+            }
+        }
         // gallery
         // xóa gallery đc mark là bị xóa đi
         if($request->has('removeGalleryIds')){

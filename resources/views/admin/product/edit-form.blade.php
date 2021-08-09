@@ -56,6 +56,19 @@
                                     <label for="">Số lượng</label>
                                     <input type="number" name="quantity" class="form-control" value="{{$model->quantity}}">
                                 </div>
+                                <div class="form-group">
+                                    <label for="">Phụ kiện</label><br>
+                                    <div class="form-control">
+                                            @foreach ($tags as $tag)
+                                                <input type="checkbox" name="tag_id[]" id="{{$tag->id}}" value="{{$tag->id}}"
+                                                    @foreach ($model->product_tag as $prt)
+                                                    @if($prt->tag_id == $tag->id) checked @endif
+                                                    @endforeach
+                                                >
+                                                <label class="pr-2" for="{{$tag->id}}">{{$tag->name}}</label>
+                                            @endforeach
+                                    </div>
+                                </div>
                             </div>
                             <div class="col-6">
                                 <div class="add-product-preview-img">
@@ -87,11 +100,9 @@
                                                 <button type="button" class="btn btn-danger" onclick="removeGalleryImg(this, {{$gl->id}})">Xóa</button>
                                             </td>
                                         </tr>
-                                            
                                         @endforeach
                                     </tbody>
-                                </table>    
-                                
+                                </table>
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
@@ -107,7 +118,6 @@
                     </form>
                 </div>
             </div>
-            
         </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->

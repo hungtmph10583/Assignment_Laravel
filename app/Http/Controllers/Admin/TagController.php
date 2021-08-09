@@ -36,7 +36,7 @@ class TagController extends Controller
 
     public function remove($id){
         Tag::destroy($id);
-        return redirect()->back();;
+        return redirect()->back();
     }
 
     public function addForm(){

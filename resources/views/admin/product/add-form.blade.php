@@ -48,6 +48,16 @@
                                         @endforeach
                                     </select>
                                 </div>
+                                <div class="form-group">
+                                    <label for="">Phụ kiện</label><br>
+                                    <div class="form-control">
+                                        @foreach($tags as $tg)
+                                            <input type="checkbox" name="tag_id[]" id="{{$tg->id}}" value="{{$tg->id}}">
+                                            <label class="pr-2" for="{{$tg->id}}">{{$tg->name}}</label>
+                                        @endforeach
+                                    </div><br>
+                                    <input class="form-control" type="number" name="additional_price" value="{{old('additional_price')}}" placeholder="Giá bổ sung">
+                                </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
@@ -84,8 +94,7 @@
                                     <tbody id="gallery">
                                         
                                     </tbody>
-                                </table>    
-                                
+                                </table>
                             </div>
                             <div class="col-12">
                                 <div class="form-group">
@@ -141,7 +150,7 @@
                 reader.readAsDataURL(event.target.files[0]);
             }
         };
-        function removeImg(el){
+        function removeTag(el){
             $(el).parent().parent().remove();
         }
     </script>

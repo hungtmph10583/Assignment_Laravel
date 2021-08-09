@@ -29,4 +29,8 @@ class Product extends Model
     public function tags(){
         return $this->belongsToMany(Tag::class, 'product_tag', 'product_id', 'tag_id');
     }
+
+    public function product_tag(){
+        return $this->hasMany(ProductTag::class, 'product_id');
+    }
 }

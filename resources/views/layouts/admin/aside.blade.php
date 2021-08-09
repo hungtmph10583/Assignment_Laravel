@@ -87,7 +87,7 @@
             <li class="nav-item">
                 <a href="#" class="nav-link">
                     <i class="fas fa-tags"></i>
-                    <p>Thẻ tag<i class="right fas fa-angle-left"></i></p>
+                    <p>Phụ kiện<i class="right fas fa-angle-left"></i></p>
                 </a>
                 <ul class="nav nav-treeview">
                     <li class="nav-item">

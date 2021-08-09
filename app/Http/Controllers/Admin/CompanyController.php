@@ -43,7 +43,7 @@ class CompanyController extends Controller
         $company = Company::find($id);
         $company->products()->delete();
         $company->delete();
-        return redirect()->back();;
+        return redirect()->back();
     }
 
     public function addForm(){

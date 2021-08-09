@@ -55,7 +55,7 @@ class UserController extends Controller
 
     public function remove($id){
         User::destroy($id);
-        return redirect()->back();;
+        return redirect()->back();
     }
 
     public function editForm($id){

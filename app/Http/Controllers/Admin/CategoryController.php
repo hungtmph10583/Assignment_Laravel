@@ -42,7 +42,7 @@ class CategoryController extends Controller
         $category = Category::find($id);
         $category->products()->delete();
         $category->delete();
-        return redirect()->back();;
+        return redirect()->back();
     }
 
     public function addForm(){

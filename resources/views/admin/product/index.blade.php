@@ -86,7 +86,7 @@
                                 <th>Hãng xe</th>
                                 <th>Đơn giá</th>
                                 <th>Số lượng</th>
-                                <th>Tag</th>
+                                <th>Phụ kiện</th>
                                 <th><a href="{{route('product.add')}}" class="btn btn-primary">Tạo mới</a></th>
                             </thead>
                             <tbody>
@@ -101,8 +101,9 @@
                                     <td>{{number_format($p->quantity)}}</td>
                                     <td>
                                         @isset($p->tags)
-                                            @foreach($p->tags as $t)
-                                                <span>{{$t->name}}</span>
+                                            @foreach($p->tags as $tg)
+                                                <span class="btn btn-success mb-1">{{$tg->name}}</span>
+                                                @if(count($p->tags) > 2)<br>@endif
                                             @endforeach
                                         @endisset
                                     </td>
@@ -124,4 +125,13 @@
     </section>
     <!-- /.content -->
 </div>
+@endsection
+@section('pagejs')
+    <script type="text/javascript">
+        var sum = document.getElementById('sum');
+        var prpd = document.getElementById('prpd');
+        var sum = document.getElementById('sum');
+        var = 
+        console.log(sum.innerHTML);
+	</script>
 @endsection
